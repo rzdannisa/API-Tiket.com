@@ -1,9 +1,9 @@
-@extends
+@extends('layouts.app')
 
 @section('content')
-<h4>Currency</h4>
+<center><bold><h4 style="margin-top:30px;margin-bottom:20px;font-size:40px;">Currency</h4></bold></center>
 
-<table>
+<table class="striped centered" style="width:40%;margin:auto;text-align:">
   <thead>
     <tr>
       <th>Code</th>

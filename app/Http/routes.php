@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('master/currency', 'Controller@view_Currency');
 Route::get('cronGetCurrency', 'Controller@get_Currency');
-Route::get('master/language', 'Controller@get_Language');
+Route::get('master/language', 'Controller@view_Language');
 Route::get('cronGetLanguage', 'Controller@get_Language');
-Route::get('master/country', 'Controller@get_Country');
+Route::get('master/country', 'Controller@view_Country');
 Route::get('cronGetCountry', 'Controller@get_Country');

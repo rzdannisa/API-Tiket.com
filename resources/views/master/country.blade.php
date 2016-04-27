@@ -1,9 +1,9 @@
-@extends
+@extends('layouts.app')
 
 @section('content')
-<h4>Country</h4>
+<center><bold><h4 style="margin-top:30px;margin-bottom:20px;font-size:40px;">Country</h4></bold></center>
 
-<table>
+<table class="striped centered" style="width:60%;margin:auto;">
   <thead>
     <tr>
       <th>Country ID</th>
@@ -11,4 +11,14 @@
       <th>Country AreaCode</th>
     </tr>
   </thead>
+<tbody>
+  @foreach($data as $key)
+    <tr>
+      <td>{{$key->country_id}}</td>
+      <td>{{$key->country_name}}</td>
+      <td>{{$key->country_areacode}}</td>
+    </tr>
+  @endforeach
+</tbody>
 </table>
+@endsection
