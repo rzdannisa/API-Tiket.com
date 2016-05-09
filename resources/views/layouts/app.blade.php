@@ -13,8 +13,7 @@
     <link href="{{ url('css/materialize.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ url('css/materialize.css')}}" rel="stylesheet" type="text/css" />
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
 
     <style>
         body {
@@ -27,53 +26,32 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="nav-wrapper">
-        <div class="container">
-            <div class="navbar-header">
+@if (Auth::guest())
+<nav>
+<div class="nav-wrapper">
+    <a href="#!" class="brand-logo">API-Ticket.com</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="{{ url('/login') }}">Login</a></li>
+    <li><a href="{{ url('/register') }}">Register</a></li>
+      </ul>
+  </div>
+</nav>
+@else
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <p class="brand-logo">
-                    API - Tiket.com
-                </p>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul id="nav-mobile" class="dropdown-menu right hide-on-med-and-down" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ url('/master/currency') }}">Currency</a></li>
-                        <li><a href="{{ url('/master/country') }}">Country</a></li>
-                        <li><a href="{{ url('/master/language') }}">Language</a></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">API-Ticket.com</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="{{ url('/home') }}">Home</a></li>
+      <li><a href="{{ url('/master/currency') }}">Currency</a></li>
+      <li><a href="{{ url('/master/country') }}">Country</a></li>
+      <li><a href="{{ url('/master/language') }}">Language</a></li>
+      <li><a href="{{ url('/master/airport') }}">Airport</a></li>
+       <li><a href="{{ url('logout') }}">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+@endif
 
     @yield('content')
 

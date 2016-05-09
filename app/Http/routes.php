@@ -25,3 +25,5 @@ Route::get('master/language', 'Controller@view_Language');
 Route::get('cronGetLanguage', 'Controller@get_Language');
 Route::get('master/country', 'Controller@view_Country');
 Route::get('cronGetCountry', 'Controller@get_Country');
+Route::get('master/airport', 'Controller@view_Airport');
+Route::get('cronGetAirport', 'Controller@get_Airport');

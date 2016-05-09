@@ -6,17 +6,19 @@
 <table class="striped centered" style="width:60%;margin:auto;">
   <thead>
     <tr>
-      <th>Country ID</th>
-      <th>Country Name</th>
-      <th>Country AreaCode</th>
+      <th>Airport Name</th>
+      <th>Airport Code</th>
+      <th>Location Name</th>
+      <th>Country Id</th>
     </tr>
   </thead>
 <tbody>
   @foreach($data as $key)
     <tr>
+      <td>{{$key->airport_name}}</td>
+      <td>{{$key->airport_code}}</td>
+      <td>{{$key->location_name}}</td>
       <td>{{$key->country_id}}</td>
-      <td>{{$key->country_name}}</td>
-      <td>{{$key->country_areacode}}</td>
     </tr>
   @endforeach
 </tbody>
