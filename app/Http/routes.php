@@ -27,3 +27,5 @@ Route::get('master/country', 'Controller@view_Country');
 Route::get('cronGetCountry', 'Controller@get_Country');
 Route::get('master/airport', 'Controller@view_Airport');
 Route::get('cronGetAirport', 'Controller@get_Airport');
+Route::get('airline/flight', ['as'=>'airline_flight',
+                                  'uses'=>'Reservasi@flight']);
