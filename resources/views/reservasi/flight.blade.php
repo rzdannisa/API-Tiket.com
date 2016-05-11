@@ -35,11 +35,11 @@
         </div>
 
         <div class="col s2">
-          <input type="text" class="for_date" id="depart_date" name="depart_date" />
+          <input type="text" placeholder="Depart Date" class="for_date" id="depart_date" name="depart_date" />
         </div>
 
         <div class="col s2">
-          <input type="text" class="for_date" id="return_date" name="return_date" />
+          <input type="text" placeholder="Return Date" class="for_date" id="return_date" name="return_date" />
         </div>
 
         <div class="col s1">
@@ -67,17 +67,19 @@
         </div>
 
         <div class="col s3" class="browser-default">
-          <span class="btn">Search</span>
+          <span class="btn" onclick="search()" >Search</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div id="result"></div>
 @endsection
 
 @section('footer')
 <script type="text/javascript">
+
   $(".for_date").datepicker();
 
   function check_type(){
@@ -89,5 +91,26 @@
     }
   }
   check_type();
+
+  function search(){
+    $.ajax({
+      url:'{{route("ajax_search_flight")}}',
+      type:'POST',
+      data:{
+            from:$("#from").val(),
+            to:$("#to").val(),
+            type:$("#type").val(),
+            depart_date:$('#depart_date').val(),
+            return_date:$('#return_date').val(),
+            adult:$('#adult').val(),
+            child:$('#child').val(),
+            infant:$('#infant').val(),
+            _token:'{{csrf_token()}}'
+           },
+      success:function(data) {
+            $('#result').html(data);
+      }
+    });
+  }
 </script>
 @endsection
