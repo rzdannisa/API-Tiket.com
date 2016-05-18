@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use Illuminate\Support\Facades\Input;
 //use Tiket API Controller
-use App\Htto\Controllers\TiketAPI\APIController as API;
+use App\Http\Controllers\TiketAPI\APIController as API;
 
 class Reservasi extends Controller
 {
-  
+
   public function flight()
   {
     //add airport data
@@ -45,7 +45,7 @@ class Reservasi extends Controller
   	//panggil class API
   	$newapi = new API;
 
-  	$log = new \Api\Logtrx;
+  	$log = new \App\Logtrx;
   	$log->request = json_encode($data);
   	$log->token = session('token');
   	$log->save();
@@ -72,7 +72,7 @@ class Reservasi extends Controller
 
   	//panggil curl ke search/flight dengan parameter $data
   	$hasil = $newapi->getCurl('search/flight',$data);
-  	echo "<pre>".print_r(json_decode($hasil,1))."</pre>";
+  	echo json_encode($hasil);
 
   	$sd->result = json_encode($hasil);
   	$sd->save();

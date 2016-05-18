@@ -18,7 +18,7 @@
         </div>
 
         <div class="col s6">
-          <select type="text" name="to" id="name" class="browser-default">
+          <select type="text" name="to" id="to" class="browser-default">
             @foreach($airport as $key)
             <option value="{{$key->airport_code}}">
               {{$key->airport_name}} ({{$key->airport_code}})
@@ -107,8 +107,51 @@
             infant:$('#infant').val(),
             _token:'{{csrf_token()}}'
            },
+      dataType:'json', //hasil berupa json
       success:function(data) {
-            $('#result').html(data);
+            //ambil data departures
+            var hasil_depart = data.departures;
+            var res_depart = hasil_depart.result;
+
+            var html = '<ul class="collapsible popout" data-collapsible="accordion">';
+
+            //looping hasil departures
+            for(data in res_depart){
+                  //tampilkan dalam bentuk collapsible
+                  html += '<li>';
+                  html += '<div class="collapsible-header">';
+                  html += '<img src="'+res_depart[data].image+'">'
+                  html += res_depart[data].airlines_name+ ' ('+res_depart[data].full_via+') with '+res_depart[data].flight_number;
+                  html += '<div class="right">'+res_depart[data].markup_price_string+'</div>';
+                  html += '</div>';
+                  html += '<div class="collapsible-body" style="padding:10px;">';
+                  //ambil array object flight info
+                  var flights = res_depart[data].flight_infos;
+                  var flight_infos = flights.flight_info;
+                  //looping isi array flight info
+                  for(info in flight_infos){
+                        //masukkan ke dalam body collapsible
+                        html += '<h5>'+flight_infos[info].flight_number+'</h5>';
+                        html += '<div class="right">';
+                        html += flight_infos[info].arrival_city+' at '
+                              +flight_infos[info].simple_arrival_time;
+                        html += '</div>';
+                        html += '<div class="left">';
+                        html += flight_infos[info].departure_city+' at '
+                              +flight_infos[info].simple_departure_time;
+                        html += '</div>';
+                        html += '<br>';
+                        html += '<hr>';
+                  }
+                  html += '</div>';
+                  html += '</li>';
+                  //console.log(res_depart[data]);
+            }
+                  html += '</ul>';
+            //
+             $('#result').html(html);
+
+             $('.collapsible').collapsible();
       }
     });
   }
