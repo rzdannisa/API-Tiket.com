@@ -47,6 +47,7 @@
       <li><a href="{{ url('/master/country') }}">Country</a></li>
       <li><a href="{{ url('/master/language') }}">Language</a></li>
       <li><a href="{{ url('/master/airport') }}">Airport</a></li>
+      <li><a href="{{ url('/airline/flight') }}">Flight</a></li>
        <li><a href="{{ url('logout') }}">Logout</a></li>
     </ul>
   </div>
